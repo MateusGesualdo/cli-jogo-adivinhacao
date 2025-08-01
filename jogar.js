@@ -1,5 +1,5 @@
 import { number } from "@inquirer/prompts"
-async function jogar() {
+export async function jogar() {
     try {
         // chamada de api
         // solicitar inputs
