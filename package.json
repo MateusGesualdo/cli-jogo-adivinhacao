@@ -1,19 +1,19 @@
 {
   "dependencies": {
-    "@inquirer/prompts": "^7.7.1"
+    "@inquirer/prompts": "^7.7.1",
+    "chalk": "^5.4.1"
   },
   "type": "module",
   "name": "cli-jogo-adivinhacao",
   "description": "Jogo de adivinhação de números ## MVP ![jogo](./prints/jogo.png \"Jogo\")",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "echo 'iniciando...'",
     "start": "node index",
     "poststart": "echo 'programa concluido'",
-    "dev":"echo 'dev'"
+    "dev": "echo 'dev'"
   },
   "keywords": [
     "node",
