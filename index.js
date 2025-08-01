@@ -25,6 +25,7 @@ while (numeroTentativas > 0 ) {
     } else if (palpite < numeroAleatorio) {
         console.log("Muito baixo, tente um número maior")
     } else {
+        numeroTentativas++
         console.log("Entrada não é um número válido")
     }
 
