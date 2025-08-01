@@ -18,7 +18,7 @@ export async function jogar() {
             } else if (palpite > numeroAleatorio) {
                 console.log(chalk.blue("Muito alto,") + chalk.rgba(170, 32, 197, 1)("tente um número") + chalk.rgba(0, 185, 231, 1) ("menor"))
             } else if (palpite < numeroAleatorio) {
-                console.logchalk.blue("Muito alto,") + chalk.rgba(170, 32, 197, 1)("tente um número") + chalk.rgba(0, 185, 231, 1) ("menor"))
+                console.log(chalk.blue("Muito baixo,") + chalk.rgba(170, 32, 197, 1)("tente um número") + chalk.rgba(0, 185, 231, 1) ("maior"))
             } else {
                 numeroTentativas++
                 console.log("Entrada não é um número válido")
