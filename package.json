@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@inquirer/prompts": "^7.7.1",
-    "chalk": "^5.4.1"
+    "chalk": "^5.4.1",
+    "prompt-sync": "^4.2.0"
   },
   "type": "module",
   "name": "cli-jogo-adivinhacao",
