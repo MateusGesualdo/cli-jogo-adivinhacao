@@ -1,8 +1,12 @@
 import { select, input, confirm } from "@inquirer/prompts"
 import chalk from "chalk"
 import fs from "fs/promises"
+import path from "path"
+import { fileURLToPath } from "url"
 
-const caminho = '../historico.json'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const caminho = path.join(__dirname, '../historico.json')
 
 export async function obterNomeDoJogador() {
     let historico = []
@@ -10,8 +14,12 @@ export async function obterNomeDoJogador() {
     try {
         const conteudo = await fs.readFile(caminho, 'utf8')
         historico = JSON.parse(conteudo)
-    } catch (err){
-        console.log(chalk.gray("Nenhum histórico encontrado. Um novo será criado."))
+    } catch (err) {
+        if (err.code !== 'ENOENT') {
+            console.log(chalk.red(`Erro ao ler o histórico: ${err.message}`))
+        } else {
+            console.log(chalk.gray("Nenhum histórico encontrado. Um novo será criado."))
+        }
     }
 
     let nome
