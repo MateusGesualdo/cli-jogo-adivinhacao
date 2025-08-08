@@ -142,3 +142,7 @@ vite.config.ts.timestamp-*
 # Testes
 teste.js
 .teste.js
+
+#json
+historico.json
+.historico.json

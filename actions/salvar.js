@@ -24,16 +24,6 @@ export async function salvarSeForRecorde(nome, tentativas) {
 
     const recordeAtual = historico.find(j => j.nome === nome)
 
-    if (!recordeAtual) {
-        const confirmar = await confirm({
-            message: chalk.yellow(`Esse nome ainda não tem nenhum registro. Deseja criar um novo registro para "${nome}"?`)
-        })
-
-        if (!confirmar) {
-            console.log(chalk.gray("Registro cancelado."))
-            return
-        }
-    }
 
     if (!recordeAtual || tentativas < recordeAtual.tentativas) {
         const novoRegistro = {
