@@ -11,7 +11,7 @@ export async function jogar() {
         const numeroAleatorio = Math.floor(Math.random() * 101)
         let numeroTentativas = 7
         let tentativasFeitas = 0
-
+        let numerosJaTentados = []
 
         while (numeroTentativas > 0) {
             let palpite = await number({ message: chalk.bold.yellow("Digite um número de 0 a 100:") })  
@@ -34,9 +34,9 @@ export async function jogar() {
             } else if (palpite > numeroAleatorio) {
 
 
-                console.log(chalk.blue("Muito alto,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) ("menor"))
+                console.log(chalk.blue("Muito alto,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) (" menor"))
             } else if (palpite < numeroAleatorio) {
-                console.log(chalk.blue("Muito baixo,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) ("maior"))
+                console.log(chalk.blue("Muito baixo,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) (" maior"))
             } else {
                 numeroTentativas++
                 console.log("Entrada não é um número válido")
@@ -51,7 +51,7 @@ export async function jogar() {
         }
 
     } catch {
-        console.log('Programa encerrado pelo usuário ))')
+        console.log('Programa encerrado pelo usuário ')
     }
 
 }

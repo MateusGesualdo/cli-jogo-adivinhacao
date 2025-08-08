@@ -1,22 +1,20 @@
-import {jogar} from './jogar.js'
+import { jogar } from './jogar.js'
+import { confirm } from '@inquirer/prompts'
+import chalk from 'chalk'
 
-// jogar()
-
+// Primeira rodada
 await jogar()
 
-// let comecar = await number("Deseja começar (1 = sim / 2 = não)?  ")
+// Loop de continuação
+while (true) {
+  const continuar = await confirm({
+    message: chalk.yellow('Deseja continuar jogando?')
+  })
 
-// if (comecar == 1){
-// }
-while (true){
+  if (!continuar) {
+    console.log(chalk.gray('Jogador decidiu parar.'))
+    break
+  }
 
-    let continuar = await number("Deseja continuar jogando (1 = sim / 2 = não)?")
-    if (continuar == 1){
-        console.log("Continuando...")
-        await jogar()
-    
-    }else{
-        console.log("Parando...")
-        break
-    }
+  await jogar()
 }
