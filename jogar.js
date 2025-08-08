@@ -1,18 +1,21 @@
-import { number } from "@inquirer/prompts"
+import {number } from "@inquirer/prompts"
 import chalk from "chalk"
+import {obterNomeDoJogador} from './actions/obternome.js'
+import {salvarSeForRecorde} from './actions/salvar.js'
 
 export async function jogar() {
-    try { 
-        // chamada de api
-        // solicitar inputs 
-        // 
+    try {
+        const nome = await obterNomeDoJogador()
+        if (!nome) return
+
         const numeroAleatorio = Math.floor(Math.random() * 101)
         let numeroTentativas = 7
-        let numerosJaTentados = []
+        let tentativasFeitas = 0
+
 
         while (numeroTentativas > 0) {
-
-            let palpite = await number({ message: chalk.yellow("Digite um número de 0 a 100") })  
+            let palpite = await number({ message: chalk.bold.yellow("Digite um número de 0 a 100:") })  
+            tentativasFeitas++
 
             // Verifica se o número já foi tentado
             if (numerosJaTentados.includes(palpite)) {
@@ -25,9 +28,11 @@ export async function jogar() {
             numerosJaTentados.push(palpite)
 
             if (palpite === numeroAleatorio) {
-                console.log(chalk.green("Parabéns, voce acertou!"))
+                console.log(chalk.bold.green(`\n🎉 Parabéns, você acertou! com ${tentativasFeitas} tentativas`))
+                await salvarSeForRecorde(nome, tentativasFeitas)
                 break
             } else if (palpite > numeroAleatorio) {
+
 
                 console.log(chalk.blue("Muito alto,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) ("menor"))
             } else if (palpite < numeroAleatorio) {
@@ -35,13 +40,13 @@ export async function jogar() {
             } else {
                 numeroTentativas++
                 console.log("Entrada não é um número válido")
-
             }
 
-            numeroTentativas = numeroTentativas - 1
+            numeroTentativas--
         }
 
         if (numeroTentativas === 0) {
+
             console.log(chalk.red(`Tentativas acabaram, o número era ${numeroAleatorio}`))
         }
 
@@ -50,3 +55,4 @@ export async function jogar() {
     }
 
 }
+
