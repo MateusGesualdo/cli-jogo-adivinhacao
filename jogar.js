@@ -9,13 +9,12 @@ export async function jogar() {
         if (!nome) return
 
         const numeroAleatorio = Math.floor(Math.random() * 101)
-        let numeroTentativas = 7
+        let chances = 7
         let tentativasFeitas = 0
         let numerosJaTentados = []
 
-        while (numeroTentativas > 0) {
+        while (chances > 0) {
             let palpite = await number({ message: chalk.bold.yellow("Digite um número de 0 a 100:") })  
-            tentativasFeitas++
 
             // Verifica se o número já foi tentado
             if (numerosJaTentados.includes(palpite)) {
@@ -32,20 +31,19 @@ export async function jogar() {
                 await salvarSeForRecorde(nome, tentativasFeitas)
                 break
             } else if (palpite > numeroAleatorio) {
-
-
                 console.log(chalk.blue("Muito alto,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) (" menor"))
             } else if (palpite < numeroAleatorio) {
                 console.log(chalk.blue("Muito baixo,") + chalk.rgb(170, 32, 197)("tente um número") + chalk.rgb(0, 185, 231) (" maior"))
             } else {
-                numeroTentativas++
+                chances++
                 console.log("Entrada não é um número válido")
             }
 
-            numeroTentativas--
+            chances--
+            tentativasFeitas++
         }
 
-        if (numeroTentativas === 0) {
+        if (chances === 0) {
 
             console.log(chalk.red(`Tentativas acabaram, o número era ${numeroAleatorio}`))
         }
